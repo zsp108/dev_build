@@ -1,8 +1,17 @@
 #!/bin/bash
 
+SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+source "${SCRIPT_ROOT}/scripts/utils.sh"
+
 read -p "请输入Docker 安装路径：" docker_dir
 
+log info "正在安装 Docker..."
+log info "安装路径：${docker_dir}"
+
 mkdir -p "${docker_dir}"
+if [ $? -ne 0 ]; then  
+    log error "创建目录失败！"
+fi
 
 cd ../packages
 tar xvpf docker-18.09.9.tgz >/dev/null
@@ -47,9 +56,6 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 
-systemctl daemon-reload
-systemctl restart docker
-systemctl status docker
 
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
@@ -60,3 +66,10 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+systemctl status docker
+
+if [ $? -eq 0 ]; then
+    log info "Docker 安装成功！"
+else
+    log error "Docker 安装失败！"
+fi
