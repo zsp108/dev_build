@@ -27,10 +27,10 @@ help:
 	@echo "  make docker_install         	安装docker"
 	@echo "  make docker_uninstall       	卸载docker"
 	@echo "  make build                 	编译镜像"
-	@echo "  make run           	运行容器"
-	@echo "  make exec           	进入容器"
-	@echo "  make stop           	停止所有容器"
-	@echo "  make clean           	停止并清理所有容器"
+	@echo "  make run           		运行容器"
+	@echo "  make exec           		进入容器"
+	@echo "  make stop           		停止所有容器"
+	@echo "  make clean           		停止并清理所有容器"
 
 .PHONY: docker_install
 docker_install:
