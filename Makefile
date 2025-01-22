@@ -26,11 +26,16 @@ help:
 	@echo "可用命令："
 	@echo "  make help           		显示帮助信息"
 	@echo "  make docker_install         	安装docker"
+	@echo "  make docker_uninstall       	卸载docker"
 
 
 .PHONY: docker_install
 docker_install:
 	cd scripts && sh docker_install.sh
+
+.PHONY: docker_uninstall
+docker_uninstall:
+	cd scripts && sh docker_uninstall.sh
 
 # 创建镜像
 .PHONY: build
