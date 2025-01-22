@@ -3,6 +3,14 @@
 SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 source "${SCRIPT_ROOT}/scripts/utils.sh"
 
+
+if command -v docker &> /dev/null; then
+    log warn "Docker 已安装，脚本退出。"
+    exit 0
+else
+    log info "Docker 未安装，执行后续操作。"
+fi
+
 read -p "请输入Docker 安装路径：" docker_dir
 
 log info "正在安装 Docker..."

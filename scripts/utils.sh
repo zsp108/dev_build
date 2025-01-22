@@ -1,6 +1,8 @@
 #!/bin/bash
 
-logfile=./qinit.log
+SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+
+logfile=$SCRIPT_ROOT/logs/qinit.log
 # 日志函数，记录操作系统，并且将输出打印到屏幕
 function log {
     local msg
