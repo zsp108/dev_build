@@ -1,7 +1,7 @@
 # 镜像名称
-IMAGE_NAME = test-kylin
+IMAGE_NAME = dev_build
 TAG = v1.0.0
-container_name = test_container
+container_name = my_dev
 
 # Go 命令
 DOCKER = docker

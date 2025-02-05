@@ -87,7 +87,7 @@ elif [[ "$ARCH" == "aarch64" ]]; then
 fi
 
 if [ -d $HOME/go ];then
-    log error "检测到 $HOME/go 目录存在，请确认是否需要清理"
+    log warn "检测到 $HOME/go 目录存在，请确认是否需要清理"
 else
     mkdir -p $HOME/go
 fi
