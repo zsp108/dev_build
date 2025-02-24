@@ -46,7 +46,7 @@ fi
 log info "检测到系统架构: $ARCH"
 log info "检测到操作系统: $OS $VERSION"
 
-go_version=1.23.4
+go_version=1.24.0
 
 if [ `command -v go` ];then
     cur_goversion=`go version 2>&1 | sed '1!d' | sed -e 's/go//g' |awk '{print $2}'`
