@@ -24,7 +24,7 @@ sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/ssh
 sed -i 's/^#Port 22/Port 2202/' /etc/ssh/sshd_config && \
 sed -i 's/^#UseDNS yes/UseDNS yes/' /etc/ssh/sshd_config
 
-RUN chmod +x /root/git.sh && chmod +x /root/go_install.sh
+RUN chmod +x /root/git.sh && chmod +x /root/go_install.sh && chmod +x /root/init.sh
     # /root/git.sh
 #     chmod +x /root/go_install.sh && \
 #     /root/git.sh && \
