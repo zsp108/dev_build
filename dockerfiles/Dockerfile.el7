@@ -13,6 +13,7 @@ COPY git.sh /root/git.sh
 COPY packages/git-2.42.0.tar.gz /tmp/git-2.42.0.tar.gz
 COPY packages/go1.23.4.linux-amd64.tar.gz /tmp/go1.23.4.linux-amd64.tar.gz
 COPY go_install.sh /root/go_install.sh
+COPY init.sh /root/init.sh
 
 RUN echo 'export LANG="en_US.UTF-8" # 设置系统语言为 en_US.UTF-8，避免终端出现中文乱码"' >> /root/.bashrc
 RUN ssh-keygen -A && \
