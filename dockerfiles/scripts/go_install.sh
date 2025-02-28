@@ -59,7 +59,20 @@ if [ `command -v go` ];then
         log error "该环境已安装的Golang版本和将要安装的版本不同，请清理旧版本Golang后重试本脚本，旧版本位置：`command -v go`"
     fi
 fi
-
+# 安装依赖包
+log info "正在安装依赖包..."
+case $OS in
+    'centos'|'redhat')
+        yum install -y wget make autoconf automake cmake perl-CPAN libcurl-devel libtool gcc gcc-c++ glibc-headers zlib-devel telnet ctags lrzsz jq expat-devel openssl-devel gettext openssh-server passwd
+        ;;
+    'debian'|'ubuntu')
+        apt install -y wget make autoconf automake cmake perl-modules libcurl4-openssl-dev libtool gcc g++ glibc-doc zlib1g-dev telnet ctags lrzsz jq libexpat1-dev openssl libssl-dev gettext openssh-server passwd
+        ;;
+    *)
+        echo "Unsupported OS: $OS"
+        exit 1
+        ;;
+esac
 
 
 # 根据架构和系统版本下载对应的 Git 安装包

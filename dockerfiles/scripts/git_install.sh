@@ -45,11 +45,11 @@ if [ `command  -v git` ];then
         read -p "是否删除已安装的git$cur_gitversion？(y/n):" is_del_git
 
         if [[ $is_del_git == 'y' ]];then
-            case $OSNAME in
-                'redhat')
+            case $OS in
+                'centos'|'redhat')
                     yum remove git -y
                     ;;
-                'debian')
+                'debian'|'ubuntu')
                     apt remove git -y
                     ;;
             esac
@@ -75,6 +75,22 @@ fi
 # 打印系统信息
 log info "检测到系统架构: $ARCH"
 log info "检测到操作系统: $OS $VERSION"
+
+
+# 安装依赖包
+log info "正在安装依赖包..."
+case $OS in
+    'centos'|'redhat')
+        yum install -y wget make autoconf automake cmake perl-CPAN libcurl-devel libtool gcc gcc-c++ glibc-headers zlib-devel telnet ctags lrzsz jq expat-devel openssl-devel gettext openssh-server passwd
+        ;;
+    'debian'|'ubuntu')
+        apt install -y wget make autoconf automake cmake perl-modules libcurl4-openssl-dev libtool gcc g++ glibc-doc zlib1g-dev telnet ctags lrzsz jq libexpat1-dev openssl libssl-dev gettext openssh-server passwd
+        ;;
+    *)
+        echo "Unsupported OS: $OS"
+        exit 1
+        ;;
+esac
 
 # 下载 Git 安装包
 log info "正在下载 Git 安装包..."

@@ -9,11 +9,12 @@ RUN yum -y update && \
     yum -y install epel-release && \
     yum install -y wget make autoconf automake cmake perl-CPAN libcurl-devel libtool gcc gcc-c++ glibc-headers zlib-devel telnet ctags lrzsz jq expat-devel openssl-devel gettext openssh-server passwd
 
-COPY git.sh /root/git.sh
+COPY scripts/git_install.sh /root/scripts/git_install.sh
 COPY packages/git-2.42.0.tar.gz /tmp/git-2.42.0.tar.gz
 COPY packages/go1.23.4.linux-amd64.tar.gz /tmp/go1.23.4.linux-amd64.tar.gz
-COPY go_install.sh /root/go_install.sh
-COPY init.sh /root/init.sh
+COPY scripts/go_install.sh /root/scripts/go_install.sh
+COPY scripts/init.sh /root/scripts/init.sh
+COPY scripts/python_install.sh /root/scripts/python_install.sh
 
 RUN echo 'export LANG="en_US.UTF-8" # 设置系统语言为 en_US.UTF-8，避免终端出现中文乱码"' >> /root/.bashrc
 RUN ssh-keygen -A && \
@@ -24,7 +25,7 @@ sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/ssh
 sed -i 's/^#Port 22/Port 2202/' /etc/ssh/sshd_config && \
 sed -i 's/^#UseDNS yes/UseDNS yes/' /etc/ssh/sshd_config
 
-RUN chmod +x /root/git.sh && chmod +x /root/go_install.sh && chmod +x /root/init.sh
+RUN chmod +x /root/scripts/*.sh 
     # /root/git.sh
 #     chmod +x /root/go_install.sh && \
 #     /root/git.sh && \
