@@ -118,3 +118,13 @@ git --version
 # 打印 Git 版本信息
 log info "Git 安装成功。"
 log info "Git 版本信息: $(git --version)"
+
+
+git config --global credential.helper store    # 设置 Git，保存用户名和密码
+git config --global core.longpaths true # 解决 Git 中 'Filename too long' 的错误
+
+#关闭终端显示非 ASCII 字符
+git config --global core.quotepath off
+
+# GitHub 限制最大只能克隆 100M 的单个文件，为了能够克隆大于 100M 的文件，我们还需要安装 Git Large File Storage
+git lfs install --skip-repo
